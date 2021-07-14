@@ -1,5 +1,6 @@
 package com.example.taborganizer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,8 +41,9 @@ public class FragmentOne extends Fragment {
         final Button button = view.findViewById(R.id.add);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //urls.add(webView.getUrl());
                 //TODO:open other fragment/activity to choose ore create new list for the song
+                Intent intent = new Intent(getActivity(), Selecter.class);
+                startActivity(intent);
             }
         });
         // Inflate the layout for this fragment

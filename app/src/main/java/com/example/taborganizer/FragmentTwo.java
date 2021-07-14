@@ -49,19 +49,18 @@ public class FragmentTwo extends Fragment {
                                         public void onItemClick(AdapterView<?> parent, View view,
                                                                 int position, long id) {
 
-                                           // Intent intent = new Intent(getActivity(), UsersVideos.class);
+                                            //Intent intent = new Intent(getActivity(), UsersVideos.class);
 
                                             //startActivity(intent);
                                         }
-                                    }
-        );
+                                    });
 
-        Button mButton = (Button)view.findViewById(R.id.btn_new);
+        Button mButton =view.findViewById(R.id.btn_new);
 
         mButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View inView) {
-                final EditText mEdit = (EditText)view.findViewById(R.id.search_text2);
+                final EditText mEdit =view.findViewById(R.id.search_text2);
                 System.out.println(mEdit.getText().toString() + "TAG");
                 lists.add(mEdit.getText().toString());
 
@@ -77,13 +76,8 @@ public class FragmentTwo extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
 
         if (isVisibleToUser) {
-
-            // Refresh tab data:
-
-            if (getFragmentManager() != null) {
                 FragmentTwo fragment = new FragmentTwo();
                 getFragmentManager().beginTransaction().replace(R.id.frag_two, fragment).commit();
-            }
         }
     }
 }
