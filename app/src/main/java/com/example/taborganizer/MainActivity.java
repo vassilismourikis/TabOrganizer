@@ -7,10 +7,13 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
+    public static ArrayList<String> lists=new ArrayList<String>();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         addTabs(viewPager);
         ((TabLayout) findViewById(R.id.tabLayout)).setupWithViewPager( viewPager );
+
+
     }
 
     private void addTabs(ViewPager viewPager) {
