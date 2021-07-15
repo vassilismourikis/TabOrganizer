@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import static com.example.taborganizer.MainActivity.lists;
 
 public class FragmentTwo extends Fragment {
@@ -20,8 +22,6 @@ public class FragmentTwo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        System.out.println("ONCREATE");
-
         return inflater.inflate(R.layout.fragment_two, container, false);
 
     }
@@ -61,23 +61,12 @@ public class FragmentTwo extends Fragment {
 
             public void onClick(View inView) {
                 final EditText mEdit =view.findViewById(R.id.search_text2);
-                System.out.println(mEdit.getText().toString() + "TAG");
                 lists.add(mEdit.getText().toString());
-
-
+                arrayAdapter.notifyDataSetChanged();
             }
         });
 
 
     }
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
 
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if (isVisibleToUser) {
-                FragmentTwo fragment = new FragmentTwo();
-                getFragmentManager().beginTransaction().replace(R.id.frag_two, fragment).commit();
-        }
-    }
 }
