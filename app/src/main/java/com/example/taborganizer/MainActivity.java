@@ -67,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
                     // split the line by :
                     String[] parts = line.split("=");
 
-                    // first part is name, second is number
+                    // first part is key, second is thwe list
                     String name = parts[0].trim();
                     String arr = parts[1];
                     String ar="";
                     ArrayList<String> array = new ArrayList<String>();
-                    int j=1;
+                    int j=1;  //starts after the "["
                     while(j<parts[1].length()-1) {
                         ar="";
                         System.out.println(parts[1]);
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             }
                             ar += parts[1].charAt(i);
-                            if(i==parts[1].length()-1) j=i;
+                            if(i==parts[1].length()-1) j=i; //to keep the i befor for end
                         }
                         if(ar=="ull") continue;  //means it saw a null means no entries
                         array.add(ar);
