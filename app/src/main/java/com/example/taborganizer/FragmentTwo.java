@@ -64,6 +64,7 @@ public class FragmentTwo extends Fragment {
             public void onClick(View inView) {
                 final EditText mEdit =view.findViewById(R.id.search_text2);
                 listsNames.add(mEdit.getText().toString());
+                lists.put(mEdit.getText().toString(),null);
                 arrayAdapter.notifyDataSetChanged();
             }
         });
