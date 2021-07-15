@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import static com.example.taborganizer.MainActivity.lists;
+import static com.example.taborganizer.MainActivity.listsNames;
 
 public class Selecter extends AppCompatActivity {
     @Override
@@ -19,9 +20,14 @@ public class Selecter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecter);
 
+        Bundle b = getIntent().getExtras();
+
+
+        String link =  b.getString("link");
+
         // Inflate the layout for this fragment
         final ListView list =findViewById(R.id.list);
-        ArrayList<String> arrayList = lists;
+        ArrayList<String> arrayList = listsNames;
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
         list.setAdapter(arrayAdapter);
 
@@ -29,12 +35,13 @@ public class Selecter extends AppCompatActivity {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view,
                                                                 int position, long id) {
-
-
-                                            //Intent intent = new Intent(UsersVideos.this, VideoPlayer.class);
-
-
-                                            //startActivity(intent);
+                                            ArrayList<String> ar= lists.get(listsNames.get(position));
+                                            if(ar==null){
+                                                ar=new ArrayList<String>();
+                                                ar.add(link);
+                                            }
+                                            else ar.add(link);
+                                            lists.put(listsNames.get(position),ar);
                                         }
                                     }
         );

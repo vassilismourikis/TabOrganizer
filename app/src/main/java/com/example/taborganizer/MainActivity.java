@@ -8,18 +8,21 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    public static ArrayList<String> lists=new ArrayList<String>();;
+    public static HashMap<String,ArrayList<String>> lists=new HashMap<String,ArrayList<String>>();
+    public static ArrayList<String> listsNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        lists= new HashMap<String,ArrayList<String>>();
+        listsNames = new ArrayList<String>();
 
         viewPager = findViewById(R.id.viewPager);
 

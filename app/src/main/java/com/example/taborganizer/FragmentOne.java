@@ -19,10 +19,9 @@ import java.util.HashMap;
 public class FragmentOne extends Fragment {
 
     private WebView webView;
-    private HashMap<String, ArrayList<String>> lists;
 
     public FragmentOne() {
-        lists= new HashMap<String,ArrayList<String>>();
+
     }
 
 
@@ -43,6 +42,7 @@ public class FragmentOne extends Fragment {
             public void onClick(View v) {
                 //TODO:open other fragment/activity to choose ore create new list for the song
                 Intent intent = new Intent(getActivity(), Selecter.class);
+                intent.putExtra("link",webView.getUrl());
                 startActivity(intent);
             }
         });

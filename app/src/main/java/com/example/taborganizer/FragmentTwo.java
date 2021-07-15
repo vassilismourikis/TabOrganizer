@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import static com.example.taborganizer.MainActivity.lists;
+import static com.example.taborganizer.MainActivity.listsNames;
 
 public class FragmentTwo extends Fragment {
 
@@ -33,7 +34,7 @@ public class FragmentTwo extends Fragment {
         final ListView list = view.findViewById(R.id.list);
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_list_item_1, lists);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_list_item_1, listsNames);
         list.setAdapter(arrayAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class FragmentTwo extends Fragment {
 
             public void onClick(View inView) {
                 final EditText mEdit =view.findViewById(R.id.search_text2);
-                lists.add(mEdit.getText().toString());
+                listsNames.add(mEdit.getText().toString());
                 arrayAdapter.notifyDataSetChanged();
             }
         });
