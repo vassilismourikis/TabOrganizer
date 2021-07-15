@@ -1,5 +1,6 @@
 package com.example.taborganizer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -50,9 +51,9 @@ public class FragmentTwo extends Fragment {
                                         public void onItemClick(AdapterView<?> parent, View view,
                                                                 int position, long id) {
 
-                                            //Intent intent = new Intent(getActivity(), UsersVideos.class);
-
-                                            //startActivity(intent);
+                                            Intent intent = new Intent(getActivity(), ListContainer.class);
+                                            intent.putStringArrayListExtra("contains",lists.get(listsNames.get(position)));
+                                            startActivity(intent);
                                         }
                                     });
 

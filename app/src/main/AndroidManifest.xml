@@ -13,6 +13,10 @@
             android:name="com.example.taborganizer.Selecter"
             android:label="activity_selecter"
             android:theme="@style/Theme.TabOrganizer" />
+        <activity
+            android:name="com.example.taborganizer.ListContainer"
+            android:label="activity_selecter"
+            android:theme="@style/Theme.TabOrganizer" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
