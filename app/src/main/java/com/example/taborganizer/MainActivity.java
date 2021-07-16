@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        
+
         HashMap<String, ArrayList<String>> ldapContent = lists;
         System.out.println(ldapContent + "BEFORE WRITEEEEEEEEEEEEEE");
 

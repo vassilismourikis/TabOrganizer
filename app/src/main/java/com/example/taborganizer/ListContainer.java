@@ -17,20 +17,22 @@ import static com.example.taborganizer.MainActivity.listsNames;
 
 public class ListContainer extends AppCompatActivity{
     ArrayList<String> links;
+    String key;
+    ArrayAdapter<String> arrayAdapter;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_selecter);
 
             Bundle b = getIntent().getExtras();
+            String listname=b.getString("listName");
 
-
-            links =  b.getStringArrayList("contains");
-            if(links==null) links= new ArrayList<String>();
+            key =  b.getString("contains");
+            if(links==null) links= lists.get(key);
             // Inflate the layout for this fragment
             final ListView list =findViewById(R.id.list);
             ArrayList<String> arrayList = links;
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
+            arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
             list.setAdapter(arrayAdapter);
 
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -38,6 +40,7 @@ public class ListContainer extends AppCompatActivity{
                                             public void onItemClick(AdapterView<?> parent, View view,
                                                                     int position, long id) {
                                                 Intent intent = new Intent(getApplication(), Song.class);
+                                                intent.putExtra("listName",listname);
                                                 intent.putExtra("link",links.get(position));
                                                 startActivity(intent);
                                             }
@@ -52,6 +55,12 @@ public class ListContainer extends AppCompatActivity{
             });
 
         }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        arrayAdapter.notifyDataSetChanged();
+    }
 
 
     }
