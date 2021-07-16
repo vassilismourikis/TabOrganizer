@@ -27,8 +27,7 @@ public class ListContainer extends AppCompatActivity{
             Bundle b = getIntent().getExtras();
             String listname=b.getString("listName");
 
-            key =  b.getString("contains");
-            if(links==null) links= lists.get(key);
+            if(links==null) links= lists.get(listname);//arraylist
             // Inflate the layout for this fragment
             final ListView list =findViewById(R.id.list);
             ArrayList<String> arrayList = links;

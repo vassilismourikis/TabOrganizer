@@ -59,7 +59,6 @@ public class FragmentTwo extends Fragment {
 
                                             Intent intent = new Intent(getActivity(), ListContainer.class);
                                             intent.putExtra("listName",listsNames.get(position));
-                                            intent.putExtra("contains",listsNames.get(position));
                                             startActivity(intent);
                                         }
                                     });
