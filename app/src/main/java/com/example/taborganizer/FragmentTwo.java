@@ -20,7 +20,7 @@ import static com.example.taborganizer.MainActivity.listsNames;
 
 public class FragmentTwo extends Fragment {
 
-
+    ArrayAdapter<String> arrayAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,12 +30,18 @@ public class FragmentTwo extends Fragment {
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        arrayAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final ListView list = view.findViewById(R.id.list);
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_list_item_1, listsNames);
+        arrayAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_list_item_1, listsNames);
         list.setAdapter(arrayAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,6 +72,17 @@ public class FragmentTwo extends Fragment {
                 listsNames.add(mEdit.getText().toString());
                 lists.put(mEdit.getText().toString(),null);
                 arrayAdapter.notifyDataSetChanged();
+            }
+        });
+
+        Button del =view.findViewById(R.id.del);
+
+        del.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View inView) {
+                Intent intent = new Intent(getActivity(), DeleteList.class);
+                startActivity(intent);
+
             }
         });
 

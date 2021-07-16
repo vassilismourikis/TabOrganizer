@@ -11,17 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TabOrganizer">
+
+        <activity
+            android:name="com.example.taborganizer.DeleteList"
+            android:label="Delete List"
+            android:theme="@style/Theme.TabOrganizer" />
         <activity
             android:name="com.example.taborganizer.Selecter"
-            android:label="activity_selecter"
+            android:label="My lists"
+            android:theme="@style/Theme.TabOrganizer" />
+        <activity
+            android:name="com.example.taborganizer.Song"
+            android:label="Song"
             android:theme="@style/Theme.TabOrganizer" />
         <activity
             android:name="com.example.taborganizer.ListContainer"
-            android:label="activity_selecter"
+            android:label="Songs"
             android:theme="@style/Theme.TabOrganizer" />
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"  />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

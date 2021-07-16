@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             ar += parts[1].charAt(i);
                             if(i==parts[1].length()-1) j=i; //to keep the i befor for end
                         }
-                        if(ar=="ull") continue;  //means it saw a null means no entries
+                        if(ar.equals("ull")) continue;  //means it saw a null means no entries
                         array.add(ar);
 
                     }
@@ -127,6 +127,53 @@ public class MainActivity extends AppCompatActivity {
         ((TabLayout) findViewById(R.id.tabLayout)).setupWithViewPager( viewPager );
 
 
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        System.out.println("ONDESTROY");
+        HashMap<String, ArrayList<String>> ldapContent = lists;
+        System.out.println(ldapContent + "BEFORE WRITEEEEEEEEEEEEEE");
+
+
+        // new file object
+        File file = new File(getFilesDir()+"data.txt");
+
+        BufferedWriter bf = null;
+
+        try {
+
+            // create new BufferedWriter for the output file
+            bf = new BufferedWriter(new FileWriter(file));
+
+            // iterate map entries
+            for (Map.Entry<String, ArrayList<String>> entry :
+                    ldapContent.entrySet()) {
+
+                // put key and value separated by a colon
+                bf.write(entry.getKey() + "="
+                        + entry.getValue());
+                System.out.println(entry.getKey() + ":"
+                        + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
+                // new line
+                bf.newLine();
+            }
+
+            bf.flush();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            try {
+                // always close the writer
+                bf.close();
+            }
+            catch (Exception e) {
+            }
+        }
     }
 
     @Override

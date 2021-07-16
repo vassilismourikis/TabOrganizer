@@ -1,5 +1,6 @@
 package com.example.taborganizer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +16,7 @@ import static com.example.taborganizer.MainActivity.lists;
 import static com.example.taborganizer.MainActivity.listsNames;
 
 public class ListContainer extends AppCompatActivity{
-
+    ArrayList<String> links;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class ListContainer extends AppCompatActivity{
             Bundle b = getIntent().getExtras();
 
 
-            ArrayList<String> links =  b.getStringArrayList("contains");
+            links =  b.getStringArrayList("contains");
             if(links==null) links= new ArrayList<String>();
             // Inflate the layout for this fragment
             final ListView list =findViewById(R.id.list);
@@ -36,7 +37,9 @@ public class ListContainer extends AppCompatActivity{
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view,
                                                                     int position, long id) {
-
+                                                Intent intent = new Intent(getApplication(), Song.class);
+                                                intent.putExtra("link",links.get(position));
+                                                startActivity(intent);
                                             }
                                         }
             );
