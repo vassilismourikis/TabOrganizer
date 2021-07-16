@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 while ((line = br.readLine()) != null) {
 
                     // split the line by :
-                    String[] parts = line.split("=");
+                    String[] parts = line.split("#");
 
                     // first part is key, second is thwe list
                     String name = parts[0].trim();
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             }
                             ar += parts[1].charAt(i);
-                            if(i==parts[1].length()-1) j=i; //to keep the i befor for end
+                            if(i==parts[1].length()-1) j=i+1; //to keep the i before end
                         }
                         if(ar.equals("ull")) continue;  //means it saw a null means no entries
                         array.add(ar);
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-        System.out.println("ONDESTROY");
+
         HashMap<String, ArrayList<String>> ldapContent = lists;
         System.out.println(ldapContent + "BEFORE WRITEEEEEEEEEEEEEE");
 
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     ldapContent.entrySet()) {
 
                 // put key and value separated by a colon
-                bf.write(entry.getKey() + "="
+                bf.write(entry.getKey() + "#" //one of 2-3 characters that not being used at urls
                         + entry.getValue());
                 System.out.println(entry.getKey() + ":"
                         + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        System.out.println("ONDESTROY");
+        
         HashMap<String, ArrayList<String>> ldapContent = lists;
         System.out.println(ldapContent + "BEFORE WRITEEEEEEEEEEEEEE");
 
@@ -199,10 +199,9 @@ public class MainActivity extends AppCompatActivity {
                     ldapContent.entrySet()) {
 
                 // put key and value separated by a colon
-                bf.write(entry.getKey() + "="
+                bf.write(entry.getKey() + "#"//one of 2-3 characters that not being used at urls
                         + entry.getValue());
-                System.out.println(entry.getKey() + ":"
-                        + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
+
                 // new line
                 bf.newLine();
             }
