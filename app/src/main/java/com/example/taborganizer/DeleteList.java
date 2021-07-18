@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.taborganizer.MainActivity.lists;
 import static com.example.taborganizer.MainActivity.listsNames;
+import static com.example.taborganizer.MainActivity.names;
 
 public class DeleteList extends AppCompatActivity {
 
@@ -45,6 +46,7 @@ public class DeleteList extends AppCompatActivity {
 
                 lists.remove(listsNames.get(position));
                 listsNames.remove(position);
+                names.remove(listsNames.get(position));
                 arrayAdapter.notifyDataSetChanged();
             }
         });

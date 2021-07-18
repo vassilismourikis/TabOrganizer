@@ -9,6 +9,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
@@ -43,6 +44,9 @@ public class FragmentOne extends Fragment {
                 //TODO:open other fragment/activity to choose ore create new list for the song
                 Intent intent = new Intent(getActivity(), Selecter.class);
                 intent.putExtra("link",webView.getUrl());
+                final EditText mEdit =view.findViewById(R.id.song_name);
+                System.out.println(mEdit.getText().toString());
+                intent.putExtra("name",mEdit.getText().toString());
                 startActivity(intent);
             }
         });

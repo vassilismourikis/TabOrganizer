@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import static com.example.taborganizer.MainActivity.lists;
 import static com.example.taborganizer.MainActivity.listsNames;
+import static com.example.taborganizer.MainActivity.names;
 
 public class Selecter extends AppCompatActivity {
     @Override
@@ -25,6 +26,7 @@ public class Selecter extends AppCompatActivity {
 
 
         String link =  b.getString("link");
+        String name =  b.getString("name");
 
         // Inflate the layout for this fragment
         final ListView list =findViewById(R.id.list);
@@ -36,6 +38,7 @@ public class Selecter extends AppCompatActivity {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view,
                                                                 int position, long id) {
+                                            //FOR LINKS---------------------------------------------
                                             ArrayList<String> ar= lists.get(listsNames.get(position));
                                             if(ar==null){
                                                 ar=new ArrayList<String>();
@@ -43,6 +46,17 @@ public class Selecter extends AppCompatActivity {
                                             }
                                             else ar.add(link);
                                             lists.put(listsNames.get(position),ar);
+                                            //FOR LINKS---------------------------------------------
+
+                                            //FOR Names------------------------------------------------
+                                            ar= names.get(listsNames.get(position));
+                                            if(ar==null){
+                                                ar=new ArrayList<String>();
+                                                ar.add(name);
+                                            }
+                                            else ar.add(name);
+                                            names.put(listsNames.get(position),ar);
+                                            //FOR Names------------------------------------------------
                                         }
                                     }
         );

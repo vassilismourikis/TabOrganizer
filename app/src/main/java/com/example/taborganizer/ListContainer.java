@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import static com.example.taborganizer.MainActivity.lists;
 import static com.example.taborganizer.MainActivity.listsNames;
+import static com.example.taborganizer.MainActivity.names;
 
 public class ListContainer extends AppCompatActivity{
     ArrayList<String> links;
@@ -30,7 +31,7 @@ public class ListContainer extends AppCompatActivity{
             if(links==null) links= lists.get(listname);//arraylist
             // Inflate the layout for this fragment
             final ListView list =findViewById(R.id.list);
-            ArrayList<String> arrayList = links;
+            ArrayList<String> arrayList = names.get(listname);
             arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
             list.setAdapter(arrayAdapter);
 
@@ -40,6 +41,7 @@ public class ListContainer extends AppCompatActivity{
                                                                     int position, long id) {
                                                 Intent intent = new Intent(getApplication(), Song.class);
                                                 intent.putExtra("listName",listname);
+                                                intent.putExtra("name",arrayList.get(position));
                                                 intent.putExtra("link",links.get(position));
                                                 startActivity(intent);
                                             }

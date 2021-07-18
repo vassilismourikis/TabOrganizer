@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private final int STORAGE_PERMISSION_CODE = 1;
     ViewPager viewPager;
     public static HashMap<String,ArrayList<String>> lists=new HashMap<String,ArrayList<String>>();
+    public static HashMap<String,ArrayList<String>> names=new HashMap<String,ArrayList<String>>(); //for user's songs names
     public static ArrayList<String> listsNames;
 
     @Override
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 String line = null;
 
                 // read file line by line
-                while ((line = br.readLine()) != null) {
+                while (!(line = br.readLine()).equals("NAMES")) {
 
                     // split the line by :
                     String[] parts = line.split("#");
@@ -95,6 +96,42 @@ public class MainActivity extends AppCompatActivity {
 
                         ldapContent.put(name, array);
                 }
+                lists= ldapContent;
+                ldapContent = new HashMap<String,ArrayList<String>>();
+                while ((line = br.readLine())!= null) {
+
+                    // split the line by :
+                    String[] parts = line.split("#");
+
+                    // first part is key, second is thwe list
+                    String name = parts[0].trim();
+                    String arr = parts[1];
+                    String ar="";
+                    ArrayList<String> array = new ArrayList<String>();
+                    int j=1;  //starts after the "["
+                    while(j<parts[1].length()-1) {
+                        ar="";
+                        System.out.println(parts[1]);
+                        for (int i = j; i < parts[1].length(); i++) {
+                            if (parts[1].charAt(i) == ',' || parts[1].charAt(i) == ']'){
+                                j=i+1;
+                                break;
+                            }
+                            ar += parts[1].charAt(i);
+                            if(i==parts[1].length()-1) j=i+1; //to keep the i before end
+                        }
+                        if(ar.equals("ull")) continue;  //means it saw a null means no entries
+                        array.add(ar);
+
+                    }
+
+
+                    // put name, number in HashMap if they are
+                    // not empty
+
+                    ldapContent.put(name, array);
+                }
+                names=ldapContent;
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -111,8 +148,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        lists= ldapContent;
-        Set<String> keySet = ldapContent.keySet();
+
+        Set<String> keySet = lists.keySet();
 
         // Creating an ArrayList of keys
         // by passing the keySet
@@ -120,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 = new ArrayList<String>(keySet);
 
         listsNames = listOfKeys;
-        System.out.println(ldapContent+"EXISTSsssssssssssssssssssssssssssssssssss");
+        System.out.println(lists+"EXISTSsssssssssssssssssssssssssssssssssss");
         viewPager = findViewById(R.id.viewPager);
 
         addTabs(viewPager);
@@ -148,6 +185,21 @@ public class MainActivity extends AppCompatActivity {
             bf = new BufferedWriter(new FileWriter(file));
 
             // iterate map entries
+            for (Map.Entry<String, ArrayList<String>> entry :
+                    ldapContent.entrySet()) {
+
+                // put key and value separated by a colon
+                bf.write(entry.getKey() + "#" //one of 2-3 characters that not being used at urls
+                        + entry.getValue());
+                System.out.println(entry.getKey() + ":"
+                        + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
+                // new line
+                bf.newLine();
+            }
+            bf.write("NAMES");
+            bf.newLine();
+            ldapContent = names;
+
             for (Map.Entry<String, ArrayList<String>> entry :
                     ldapContent.entrySet()) {
 
@@ -202,6 +254,22 @@ public class MainActivity extends AppCompatActivity {
                 bf.write(entry.getKey() + "#"//one of 2-3 characters that not being used at urls
                         + entry.getValue());
 
+                // new line
+                bf.newLine();
+            }
+
+            bf.write("NAMES");
+            bf.newLine();
+            ldapContent = names;
+
+            for (Map.Entry<String, ArrayList<String>> entry :
+                    ldapContent.entrySet()) {
+
+                // put key and value separated by a colon
+                bf.write(entry.getKey() + "#" //one of 2-3 characters that not being used at urls
+                        + entry.getValue());
+                System.out.println(entry.getKey() + ":"
+                        + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
                 // new line
                 bf.newLine();
             }

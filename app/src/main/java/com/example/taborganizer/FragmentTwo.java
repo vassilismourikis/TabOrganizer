@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import static com.example.taborganizer.MainActivity.lists;
 import static com.example.taborganizer.MainActivity.listsNames;
 
@@ -68,7 +66,7 @@ public class FragmentTwo extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View inView) {
-                final EditText mEdit =view.findViewById(R.id.search_text2);
+                final EditText mEdit =view.findViewById(R.id.name);
                 listsNames.add(mEdit.getText().toString());
                 lists.put(mEdit.getText().toString(),null);
                 arrayAdapter.notifyDataSetChanged();
