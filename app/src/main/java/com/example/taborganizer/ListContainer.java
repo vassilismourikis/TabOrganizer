@@ -32,16 +32,19 @@ public class ListContainer extends AppCompatActivity{
             // Inflate the layout for this fragment
             final ListView list =findViewById(R.id.list);
             ArrayList<String> arrayList = names.get(listname);
+            if(names.get(listname)==null)
+                arrayList=new ArrayList<String>();
             arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
             list.setAdapter(arrayAdapter);
 
+            ArrayList<String> finalArrayList = arrayList;
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view,
                                                                     int position, long id) {
                                                 Intent intent = new Intent(getApplication(), Song.class);
                                                 intent.putExtra("listName",listname);
-                                                intent.putExtra("name",arrayList.get(position));
+                                                intent.putExtra("name", finalArrayList.get(position));
                                                 intent.putExtra("link",links.get(position));
                                                 startActivity(intent);
                                             }
