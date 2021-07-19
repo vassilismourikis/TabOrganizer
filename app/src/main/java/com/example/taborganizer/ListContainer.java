@@ -32,7 +32,7 @@ public class ListContainer extends AppCompatActivity{
             // Inflate the layout for this fragment
             final ListView list =findViewById(R.id.list);
             ArrayList<String> arrayList = names.get(listname);
-            if(names.get(listname)==null)
+            if(names.get(listname)==null) //in case list is empty we need to create an object otherwise the app will freeze
                 arrayList=new ArrayList<String>();
             arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
             list.setAdapter(arrayAdapter);

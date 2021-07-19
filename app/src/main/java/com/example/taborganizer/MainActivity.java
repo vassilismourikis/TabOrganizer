@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     int j=1;  //starts after the "["
                     while(j<parts[1].length()-1) {
                         ar="";
-                        System.out.println(parts[1]);
+
                         for (int i = j; i < parts[1].length(); i++) {
                             if (parts[1].charAt(i) == ',' || parts[1].charAt(i) == ']'){
                                 j=i+1;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     int j=1;  //starts after the "["
                     while(j<parts[1].length()-1) {
                         ar="";
-                        System.out.println(parts[1]);
+
                         for (int i = j; i < parts[1].length(); i++) {
                             if (parts[1].charAt(i) == ',' || parts[1].charAt(i) == ']'){
                                 j=i+1;
@@ -157,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 = new ArrayList<String>(keySet);
 
         listsNames = listOfKeys;
-        System.out.println(lists+"EXISTSsssssssssssssssssssssssssssssssssss");
         viewPager = findViewById(R.id.viewPager);
 
         addTabs(viewPager);
@@ -171,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
         HashMap<String, ArrayList<String>> ldapContent = lists;
-        System.out.println(ldapContent + "BEFORE WRITEEEEEEEEEEEEEE");
+
 
 
         // new file object
@@ -191,8 +190,7 @@ public class MainActivity extends AppCompatActivity {
                 // put key and value separated by a colon
                 bf.write(entry.getKey() + "#" //one of 2-3 characters that not being used at urls
                         + entry.getValue());
-                System.out.println(entry.getKey() + ":"
-                        + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
+
                 // new line
                 bf.newLine();
             }
@@ -206,8 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 // put key and value separated by a colon
                 bf.write(entry.getKey() + "#" //one of 2-3 characters that not being used at urls
                         + entry.getValue());
-                System.out.println(entry.getKey() + ":"
-                        + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
+
                 // new line
                 bf.newLine();
             }
@@ -233,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
         HashMap<String, ArrayList<String>> ldapContent = lists;
-        System.out.println(ldapContent + "BEFORE WRITEEEEEEEEEEEEEE");
+
 
 
         // new file object
@@ -268,8 +265,6 @@ public class MainActivity extends AppCompatActivity {
                 // put key and value separated by a colon
                 bf.write(entry.getKey() + "#" //one of 2-3 characters that not being used at urls
                         + entry.getValue());
-                System.out.println(entry.getKey() + ":"
-                        + entry.getValue() + "       AYTOGRAFTHKEEEEEEEEEEEEEEEEEEEEE");
                 // new line
                 bf.newLine();
             }
@@ -296,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
     private void addTabs(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new FragmentOne(), "kithara.to");
-        adapter.addFrag(new FragmentTwo(), "lists");
+        adapter.addFrag(new FragmentTwo(), "Lists");
         viewPager.setAdapter(adapter);
     }
 }

@@ -45,7 +45,6 @@ public class FragmentOne extends Fragment {
                 Intent intent = new Intent(getActivity(), Selecter.class);
                 intent.putExtra("link",webView.getUrl());
                 final EditText mEdit =view.findViewById(R.id.song_name);
-                System.out.println(mEdit.getText().toString());
                 intent.putExtra("name",mEdit.getText().toString());
                 startActivity(intent);
             }
