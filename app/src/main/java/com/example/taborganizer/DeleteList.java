@@ -45,8 +45,8 @@ public class DeleteList extends AppCompatActivity {
                                     int position, long id) {
 
                 lists.remove(listsNames.get(position));
-                listsNames.remove(position);
                 names.remove(listsNames.get(position));
+                listsNames.remove(position);
                 arrayAdapter.notifyDataSetChanged();
             }
         });
